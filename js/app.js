@@ -14,8 +14,9 @@
 // })
 // https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=0272983c99007b9d9ed9729bb3b9351e
 
+import apiKey from './apiKey.js';
 let weather = {
-    apiKey: '0272983c99007b9d9ed9729bb3b9351e',
+    apiKey: apiKey,
     fetchWeather: function (city) {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${this.apiKey}`).then(response => {
             return response.json();
