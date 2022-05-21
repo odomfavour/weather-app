@@ -41,7 +41,13 @@ let weather = {
 
     },
     search: function () {
-        this.fetchWeather(document.querySelector('.search-bar').value)
+        const city = document.querySelector('.search-bar').value;
+        console.log(city);
+        if(city == '') {
+            alert('Please enter a city');
+        } else {
+            this.fetchWeather(city);
+        }
     }
 
 }
