@@ -18,20 +18,29 @@ import apiKey from './apiKey.js';
 let weather = {
     apiKey: apiKey,
     fetchWeather: function (city) {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${this.apiKey}`).then(response => {
-            return response.json();
-        }).then(data => {
-            this.displayWeather(data);
-            console.log(data)
-        })
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${this.apiKey}`)
+            .then(response => {
+                return response.json();
+            }).then(data => {
+                if (data.cod === "404") {
+                    alert(data.message);
+                } else {
+                    document.querySelector('.loader').style.display = 'block';
+                    this.displayWeather(data);
+                    
+                }
+            }).catch(err => {
+                alert(err  + '. Please check your Internet connection')
+            })
     },
     displayWeather: function (data) {
+        document.querySelector('.loader').style.display = 'none';
         console.log(data);
-        const {name} = data;
-        const {icon, description} = data.weather[0];
-        const {temp, humidity} = data.main;
-        const {speed} = data.wind;
-        console.log(name, icon, description, temp, speed, humidity)
+        const { name } = data;
+        const { icon, description } = data.weather[0];
+        const { temp, humidity } = data.main;
+        const { speed } = data.wind;
+        // console.log(name, icon, description, temp, speed, humidity)
         document.querySelector('.city').innerText = 'Weather in ' + name;
         document.querySelector('.icon').src = `https://openweathermap.org/img/wn/${icon}.png`;
         document.querySelector('.description').innerText = description;
@@ -44,7 +53,7 @@ let weather = {
     search: function () {
         const city = document.querySelector('.search-bar').value;
         console.log(city);
-        if(city == '') {
+        if (city == '') {
             alert('Please enter a city');
         } else {
             this.fetchWeather(city);
@@ -58,7 +67,7 @@ document.querySelector('.search button').addEventListener('click', () => {
 })
 
 document.querySelector('.search-bar').addEventListener('keyup', (e) => {
-    if(e.key === 'Enter') {
+    if (e.key === 'Enter') {
         weather.search();
     }
 })

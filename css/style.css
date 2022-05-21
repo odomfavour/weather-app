@@ -48,8 +48,7 @@ body {
     background: #000000d0;
     padding: 30px;
     border-radius: 10px;
-    width: 100%;
-    max-width: 420px;
+    width: 40%;
     color: #fff;
 }
 
@@ -72,10 +71,12 @@ input.search-bar {
 }
 
 .search button {
-    padding: 5px 20px;
+    padding: 10px 20px;
     margin-left: 20px;
     cursor: pointer;
     background: #7c7c7c2b;
+    border: none;
+    border-radius: 4px;
     color: #fff;
     transition: 0.2s ease-in-out;
 }
@@ -94,15 +95,38 @@ input.search-bar {
     position: relative;
 }
 
-.weather.loading::after {
-    visibility: visible;
-    content: "Loading...";
+.weather.loading:after {
+    visibility: hidden;
+    content: "";
     color: #fff;
     position: absolute;
     top: 0;
     left: 20px; 
 }
 
+.loader {
+    text-align: center;
+    display: none;
+}
+
+.loader img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
 .card h4 {
     margin-bottom: 10px;
+}
+
+@media (max-width: 769px) {
+    .card {
+        width: 70%;
+    }
+}
+
+@media (max-width: 426px) {
+    .card {
+        width: 90%;
+    }
 }
