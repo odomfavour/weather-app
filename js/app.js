@@ -27,10 +27,10 @@ let weather = {
                 } else {
                     document.querySelector('.loader').style.display = 'block';
                     this.displayWeather(data);
-                    
+
                 }
             }).catch(err => {
-                alert(err  + '. Please check your Internet connection')
+                alert(err + '. Please check your Internet connection')
             })
     },
     displayWeather: function (data) {
@@ -62,12 +62,31 @@ let weather = {
 
 }
 
-document.querySelector('.search button').addEventListener('click', () => {
-    weather.search();
-})
 
-document.querySelector('.search-bar').addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
+let searchBar = document.querySelector('.search-bar')
+if (searchBar) {
+    searchBar.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            weather.search();
+        }
+    })
+}
+let searchBtn = document.querySelector('.search button')
+
+if (searchBtn) {
+   
+    searchBtn.addEventListener('click', () => {
         weather.search();
-    }
-})
+    })
+}
+
+let signupForm = document.querySelector('#signup-form')
+if (signupForm) {
+    signupForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('here')
+        window.location.href = '/home.html'
+    })
+}
+
+
