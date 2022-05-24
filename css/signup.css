@@ -1,0 +1,71 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.main-section {
+    min-height: 100vh;
+}
+
+.image-section {
+    height: 100vh;
+    background-image: url(../img/weather.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50%;
+}
+
+.form-section {
+    width: 50%;
+    padding: 40px;
+    background: #fff;
+
+}
+
+.form-section h3 {
+    margin-top: 70px;
+    color: blue;
+    font-size: 35px;
+}
+
+.form-section p {  
+    margin-bottom: 30px;
+}
+
+.form-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+.form-section button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.form-section .btn-container {
+    justify-content: flex-end;
+}
+
+@media(max-width: 426px) {
+    .image-section {
+        display: none;
+    }
+
+    .form-section {
+        width: 100%;
+    }
+}
