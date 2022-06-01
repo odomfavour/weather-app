@@ -1,20 +1,7 @@
-// window.addEventListener('load', () => {
-//     let long;
-//     let lat;
-
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(position => {
-//             console.log(position);
-//             long = position.coords.longitude;
-//             lat = position.coords.latitude;
-//             const api = `https://api.darksky.net/forecast/9e7ba84cee3459c751976b915298f81d/${lat},${long}`;
-//         });
-//         fetch(api)
-//     }
-// })
-// https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=0272983c99007b9d9ed9729bb3b9351e
-
+// importing key from  apiKey.js file
 import apiKey from './apiKey.js';
+
+// created a weather object which will contain the key and functions
 let weather = {
     apiKey: apiKey,
     fetchWeather: function (city) {
@@ -25,7 +12,7 @@ let weather = {
                 if (data.cod === "404") {
                     alert(data.message);
                 } else {
-                    document.querySelector('.loader').style.display = 'block';
+                    // document.querySelector('.loader').style.display = 'block';
                     this.displayWeather(data);
 
                 }
@@ -34,7 +21,6 @@ let weather = {
             })
     },
     displayWeather: function (data) {
-        document.querySelector('.loader').style.display = 'none';
         console.log(data);
         const { name } = data;
         const { icon, description } = data.weather[0];
@@ -48,6 +34,23 @@ let weather = {
         document.querySelector('.humidity').innerText = 'Humidity: ' + humidity + '%';
         document.querySelector('.wind').innerText = 'Wind Speed: ' + speed + 'km/h';
         document.querySelector('.weather').classList.remove('loading');
+        if(data.weather[0].main === 'Rain') {
+            console.log(data.weather[0].main);
+            document.querySelector('#body').style.backgroundImage = "url('../img/rain.jpg')";
+            // console.log(document.querySelector('body').style.backgroundImage)
+        }
+
+        if(data.weather[0].main === 'Clouds') {
+            console.log(data.weather[0].main);
+            document.querySelector('#body').style.backgroundImage = "url('../img/cloudy.jpg')";
+            // console.log(document.querySelector('body').style.backgroundImage)
+        }
+        if(data.weather[0].main === 'Sunny') {
+            console.log(data.weather[0].main);
+            document.querySelector('#body').style.backgroundImage = "url('../img/suuny.jpg')";
+            // console.log(document.querySelector('body').style.backgroundImage)
+        }
+        
 
     },
     search: function () {
